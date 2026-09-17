@@ -5,6 +5,7 @@ on:
 jobs:
   slashCommandDispatch:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - name: Slash Command Dispatch
         uses: peter-evans/slash-command-dispatch@v5

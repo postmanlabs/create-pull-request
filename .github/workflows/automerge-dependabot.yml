@@ -4,6 +4,7 @@ on: pull_request
 jobs:
   automerge:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     if: github.actor == 'dependabot[bot]'
     steps:
       - uses: peter-evans/enable-pull-request-automerge@v3
