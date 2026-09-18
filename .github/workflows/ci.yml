@@ -18,6 +18,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
@@ -42,6 +43,7 @@ jobs:
     if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
     needs: [build]
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     strategy:
       matrix:
         target: [built, committed]
@@ -90,6 +92,7 @@ jobs:
     if: github.event_name == 'pull_request'
     needs: [test]
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - name: Find Comment
         uses: peter-evans/find-comment@v4
@@ -117,6 +120,7 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: [test]
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v6
       - uses: actions/download-artifact@v7
